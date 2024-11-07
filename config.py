@@ -28,10 +28,9 @@ class ProcessConfigUI(src.pipe.ConfigUI):
                 self.delete_pipe,
                 self.instance.config.pipe,
             ),
-            ft.TextField(self.instance.config.cpus, label="Number of CPUs", border_color="grey", input_filter=ft.NumbersOnlyInputFilter()),
-            ft.TextField(self.instance.config.gpus, label="Number of GPUs", border_color="grey", input_filter=ft.NumbersOnlyInputFilter()),
+            ft.TextField(self.instance.config.cpus, label="Number of CPUs", border_color="grey", input_filter=ft.InputFilter(allow=True, regex_string=r"[0-9\.]", replacement_string="")),
+            ft.TextField(self.instance.config.gpus, label="Number of GPUs", border_color="grey", input_filter=ft.InputFilter(allow=True, regex_string=r"[0-9\.]", replacement_string="")),
         ])
-        
 
     def select_pipe(self, cls: type[src.pipe.Pipe] | src.pipe.Pipe) -> src.pipe.Pipe:
         if isinstance(cls, type):
